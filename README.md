@@ -5,18 +5,21 @@
 ## Première partie : (Customer-Service, Inventory-Service, Spring Cloud Gateway, Eureka Discovery)
 
 ### Customer-Service
+
+
 architecture:
+
 <img width="330" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/8b04ee97-6725-4566-870d-cc503e7cfb0d">
 
 dépandances:
--spring-boot-starter-actuator
--spring-boot-starter-data-jpa
--spring-boot-starter-data-rest
--spring-boot-starter-web
--spring-cloud-starter-netflix-eureka-client
--spring-boot-devtools
--h2
--lombok
+-spring-boot-starter-actuator.
+-spring-boot-starter-data-jpa.
+-spring-boot-starter-data-rest.
+-spring-boot-starter-web.
+-spring-cloud-starter-netflix-eureka-client.
+-spring-boot-devtools.
+-h2.
+-lombok.
 
  application.properties:
  ```bash
