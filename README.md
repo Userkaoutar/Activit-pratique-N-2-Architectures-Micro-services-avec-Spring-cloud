@@ -117,7 +117,8 @@ dépandances:
   - spring-boot-starter-actuator
   - spring-cloud-starter-gateway
   - spring-cloud-starter-netflix-eureka-client
-
+    
+ spring-cloud-starter-gateway: Cette dépendance joue un rôle crucial en tant que composant de la passerelle. Elle permet de définir des routes pour rediriger le trafic vers les microservices appropriés. La passerelle offre des fonctionnalités de routage, de filtrage et de gestion du trafic, agissant comme un point d'entrée centralisé pour les demandes vers différents services.
 
  application.properties:
  ```bash
@@ -195,7 +196,7 @@ le test sur: http://localhost:8083/Micro-SERVICE/*:
 
 
 ### Eureka Discovery
-Eureka est un serveur d'enregistrement et de découverte de services couramment utilisé en conjonction avec Spring Boot pour la création de microservices. Il permet aux microservices de se trouver et de communiquer entre eux dans un environnement dynamique et évolutif.
+Le module Eureka Discovery dans le projet agit comme un serveur central d'enregistrement et de découverte de microservices. Grâce à la dépendance spring-cloud-starter-netflix-eureka-server, chaque microservice personnalisé, comme Customer-Service et Inventory-Service, peut s'enregistrer dynamiquement auprès du serveur Eureka. Celui-ci maintient un annuaire à jour des services disponibles, facilitant la communication entre les microservices. 
 
 
 dépandances:
@@ -263,6 +264,15 @@ spring.h2.console.path=/h2-console
 ```
 
 BillingServiceApplication:
+
+Dans cette partie du projet, Feign est utilisé comme un moyen élégant et simplifié de communiquer avec d'autres microservices, en l'occurrence les services Customer et ProductItem. Plutôt que de gérer manuellement les requêtes HTTP et la création des clients REST, Feign permet de déclarer simplement une interface Java avec des annotations, facilitant ainsi la communication avec les services distants.
+
+Feign dans cette application est utilisé pour deux opérations clés :
+
+- Récupérer les informations du client à partir du service Customer.
+- Récupérer la liste des produits à partir du service ProductItem.
+
+
 ```bash
 
 	@Bean
@@ -318,7 +328,7 @@ le test sur: http://localhost:8083/BILLING-SERVICE/fullBill/1
 
 
 app-routing.module.ts:
-
+Dans ce fichier, chaque route est configurée pour rediriger vers un composant spécifique lorsqu'une URL particulière est atteinte. Cette configuration est cruciale pour définir la navigation au sein de l'application Angular.
 ```bash
  const routes: Routes = [
 
