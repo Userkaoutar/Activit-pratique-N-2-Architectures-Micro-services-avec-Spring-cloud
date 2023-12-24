@@ -290,7 +290,9 @@ BillingServiceApplication:
 	}
 
 ```
-le test sur: eureka:
+le test sur eureka: 
+
+
 <img width="844" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/b12dd473-fab5-4257-a184-277f70bf34b6">
 
 le test sur: http://localhost:8083/BILLING-SERVICE/fullBill/1
