@@ -311,7 +311,7 @@ le test sur: http://localhost:8083/BILLING-SERVICE/fullBill/1
 ![image](https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/96da9251-9fa2-401e-9aa1-7e3d3308eb10)
 
 
-   -les composante créés:
+   -les composantes créés:
 
 
 <img width="287" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/38eb2266-01c5-4643-86be-b955d92d9a9b">
