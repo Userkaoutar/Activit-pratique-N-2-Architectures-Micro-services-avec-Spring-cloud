@@ -7,7 +7,7 @@
 ### Customer-Service
 Un micro service qui consiste à ajouter les clients
 - Customer Entity
-bash
+```bash
 @Entity
 @Data
 @NoArgsConstructor
