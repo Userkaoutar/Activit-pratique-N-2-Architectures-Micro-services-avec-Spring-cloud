@@ -20,7 +20,7 @@ public class Customer {
     private String name;
     private String email;
 }
-
+```
 - Configuration 
 bash
 server.port=8081
