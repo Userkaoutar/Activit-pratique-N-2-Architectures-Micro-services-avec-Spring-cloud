@@ -5,22 +5,58 @@
 ## Première partie : (Customer-Service, Inventory-Service, Spring Cloud Gateway, Eureka Discovery)
 
 ### Customer-Service
-Un micro service qui consiste à ajouter les clients
-- Customer Entity
+architecture:
+<img width="330" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/8b04ee97-6725-4566-870d-cc503e7cfb0d">
+
+dépandances:
+-spring-boot-starter-actuator
+-spring-boot-starter-data-jpa
+-spring-boot-starter-data-rest
+-spring-boot-starter-web
+-spring-cloud-starter-netflix-eureka-client
+-spring-boot-devtools
+-h2
+-lombok
+
+ application.properties:
+ ```bash
+
+server.port=8081
+spring.application.name=customer-service
+spring.datasource.url=jdbc:h2:mem:customer-db
+spring.cloud.discovery.enabled=true
+#management.endpoints.web.exposure.include=*
+
+```
+CustomerServiceApplication:
 ```bash
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String email;
+@SpringBootApplication
+public class CustomerServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CustomerServiceApplication.class, args);
+	}
+
+	@Bean
+	CommandLineRunner start(CustomerRepository customerRepository, RepositoryRestConfiguration restConfiguration) {
+		restConfiguration.exposeIdsFor(Customer.class);
+		return args -> {
+			customerRepository.saveAll(List.of(
+					Customer.builder().name("kaoutar").email("k@gmail.com").build(),
+					Customer.builder().name("laila").email("l@gmail.com").build(),
+					Customer.builder().name("nour").email("n@gmail.com").build()
+			));
+			customerRepository.findAll().forEach(System.out::println);
+		};
+	}
+}
+
 }
 ```
+le test sur:http://localhost:8081/customers:
+
+<img width="476" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/cdbe3b20-46f7-4d54-8f88-87bb4e475081">>
+
 - Configuration 
 bash
 server.port=8081
