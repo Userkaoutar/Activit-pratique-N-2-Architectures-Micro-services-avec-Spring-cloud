@@ -230,21 +230,116 @@ le test sur:http://localhost:8761/:
 <img width="941" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/22ec347d-913f-4d21-bdb8-25d3cbe41a97">
 
 
+##Deuxième Partie : Billing Service avec Open Feign Rest Client:
 
-#### Configuration
-bash
-server.port=8083
+architecture:
+
+<img width="344" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/f4ce867e-e392-4da4-a712-0be378b6b7f8">
+
+dépandances:
+- spring-boot-starter-actuator.
+- spring-boot-starter-data-jpa.
+- spring-boot-starter-data-rest.
+- spring-boot-starter-web.
+- spring-cloud-starter-netflix-eureka-client.
+- spring-boot-devtools.
+- h2.
+- lombok.
+- spring-cloud-starter-openfeign
+
+ application.properties:
+ ```bash
+server.port=9999
 spring.application.name=billing-service
 spring.datasource.url=jdbc:h2:mem:billing-db
 spring.cloud.discovery.enabled=true
+management.endpoints.web.exposure.include=*
+# Enable H2 Console
+spring.h2.console.enabled=true
 
-screen
+# Configure H2 Console URL
+spring.h2.console.path=/h2-console
+
+```
+
+BillingServiceApplication:
+```bash
+
+	@Bean
+	CommandLineRunner start(BillRepository billRepository,
+							ProductItemRepository productItemRepository,
+							CustomerRestClient customerRestClient,
+							ProductItemRestClient productItemRestClient) {
+		return args -> {
+			Customer customer = customerRestClient.getCustomerById(1L);
+			Bill bill = billRepository.save(new Bill(null, new Date(), null, customer.getId(), null));
+				PagedModel<Product> productPagedModel = productItemRestClient.pageProduct(0,10);
+				productPagedModel.forEach(p -> {
+					ProductItem productItem = new ProductItem();
+					productItem.setPrice(p.getPrice());
+					productItem.setQuantity(1+new Random().nextInt(100));
+					productItem.setBill(bill);
+					productItem.setProductID(p.getId());
+					productItemRepository.save(productItem);
+				});
+
+
+
+
+		};
+	}
+
+```
+le test sur: eureka:
+<img width="844" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/b12dd473-fab5-4257-a184-277f70bf34b6">
+
+le test sur: http://localhost:8083/BILLING-SERVICE/fullBill/1
+
+<img width="376" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/146445d3-458f-411d-ab64-fb4218b45510">
+
+
 
 ## Troisième Partie : Angular
 - Création d'un projet
- bash
- ng new bill-web-app
- 
- - Ajouter une composante
- bash
- ng new bill-web-app
+```bash
+ ng new ecom-web
+ ```
+![image](https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/bb35d96e-61e3-47ff-be0a-62d98b62ec5b)
+
+![image](https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/96da9251-9fa2-401e-9aa1-7e3d3308eb10)
+
+
+   -les composante créés:
+
+
+<img width="287" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/38eb2266-01c5-4643-86be-b955d92d9a9b">
+
+
+app-routing.module.ts:
+
+```bash
+ const routes: Routes = [
+
+  {
+    path:"products", component: ProductsComponent,
+
+  },
+  {
+    path:"customers", component: CustomersComponent,
+  },
+  {
+    path:"orders/:customerId", component: OrdersComponent,
+  },
+];
+
+ ```
+
+
+
+intefaces:
+
+![image](https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/0d552c3e-eb07-4624-9612-107c6dd72269)
+
+<img width="848" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/b4789e49-9634-48ed-bd58-f1b105809cbf">
+
+
