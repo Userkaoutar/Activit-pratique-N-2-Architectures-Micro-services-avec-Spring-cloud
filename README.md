@@ -54,7 +54,7 @@ public class CustomerServiceApplication {
 	}
 
 ```
-le test sur:http://localhost:8081/customers:
+le test sur: http://localhost:8081/customers:
 
 <img width="476" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/cdbe3b20-46f7-4d54-8f88-87bb4e475081">
 
@@ -105,7 +105,7 @@ CustomerServiceApplication:
 		};
 	}
 ```
-le test sur:http://localhost:8082/products:
+le test sur: http://localhost:8082/products:
 
 <img width="447" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/8ec48166-ec3b-4ad6-92eb-f553e35e22f4">
 
@@ -189,7 +189,7 @@ public class GatewayServiceApplication {
 
 
 ```
-le test sur:http://localhost:8083/Micro-SERVICE/*:
+le test sur: http://localhost:8083/Micro-SERVICE/*:
 
 <img width="513" alt="image" src="https://github.com/Userkaoutar/Activit-pratique-N-2-Architectures-Micro-services-avec-Spring-cloud/assets/101696114/45669497-fc9f-4a6f-80fb-6d0120275219">
 
