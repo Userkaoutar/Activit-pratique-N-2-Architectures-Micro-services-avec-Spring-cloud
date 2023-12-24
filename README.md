@@ -114,9 +114,9 @@ le test sur: http://localhost:8082/products:
 
 
 dépandances:
-  -spring-boot-starter-actuator
-  -spring-cloud-starter-gateway
-  -spring-cloud-starter-netflix-eureka-client
+  - spring-boot-starter-actuator
+  - spring-cloud-starter-gateway
+  - spring-cloud-starter-netflix-eureka-client
 
 
  application.properties:
